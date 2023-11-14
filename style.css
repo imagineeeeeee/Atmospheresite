@@ -1,19 +1,22 @@
 body {
-  background-image: linear-gradient(45deg, #000000 50%, #ffffff 50%);
-  background-size: 400px 400px;
-  background-repeat: repeat;
-  animation: wave 1s linear infinite;
+  font-family: sans-serif;
+  margin: 0;
+  background-image: linear-gradient(to bottom, #2196f3, #f44336);
+  background-size: 400% 400%;
+  animation: wave 20s ease infinite;
 }
 
 @keyframes wave {
   0% {
-    background-position: 0px 0px;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
   }
   100% {
-    background-position: 400px 0px;
+    background-position: 0% 50%;
   }
 }
-
 
 header {
   background-color: #000;
@@ -25,6 +28,7 @@ header {
 header h1 {
   font-size: 2rem;
   margin: 0;
+  color: #fff;
 }
 
 header nav {
@@ -36,6 +40,7 @@ header nav a {
   text-decoration: none;
   padding: 0 1rem;
   font-size: 1rem;
+  color: #fff;
 }
 
 main {
@@ -49,16 +54,17 @@ section {
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #ffff;
+  color: #fff;
 }
 
 section p {
   font-size: 1rem;
-  color: #ffff;
+  color: #fff;
 }
 
 section.hero {
   text-align: center;
+  background-color: transparent;
 }
 
 section.hero img {
@@ -66,21 +72,25 @@ section.hero img {
   height: 200px;
   margin: 0 auto;
   border-radius: 50%;
+  border: 2px solid #fff;
+  padding: 5px;
 }
 
 section.features ul {
   list-style: none;
   padding-left: 1rem;
-  color: #ffff;
+  color: #fff;
 }
 
 section.download a.btn {
-  background-color: #ffff;
+  background-color: #fff;
   color: #000;
   padding: 1rem 2rem;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 50px;
+  border: 2px solid #000;
+  color: #000;
 }
 
 footer {
@@ -93,5 +103,5 @@ footer {
 footer p {
   font-size: 1rem;
   margin: 0;
-  color: #ffff;
+  color: #fff;
 }
