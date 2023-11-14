@@ -1,9 +1,19 @@
 body {
-  font-family: sans-serif;
-  margin: 0;
-  background-color: #000;
-  color: #fff;
+  background-image: linear-gradient(45deg, #000000 50%, #ffffff 50%);
+  background-size: 400px 400px;
+  background-repeat: repeat;
+  animation: wave 1s linear infinite;
 }
+
+@keyframes wave {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 400px 0px;
+  }
+}
+
 
 header {
   background-color: #000;
