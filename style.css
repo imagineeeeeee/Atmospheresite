@@ -46,26 +46,31 @@ header nav a {
 
 main {
   padding: 2rem;
+  text-align: center;
 }
 
 section {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #fff;
+  text-align: center;
 }
 
 section p {
   font-size: 1rem;
   color: #fff;
+  text-align: center;
 }
 
 section.hero {
   text-align: center;
   background-color: transparent;
+  text-align: center;
 }
 
 section.hero img {
@@ -75,12 +80,14 @@ section.hero img {
   border-radius: 50%;
   border: 2px solid #fff;
   padding: 5px;
+  text-align: center;
 }
 
 section.features ul {
   list-style: none;
   padding-left: 1rem;
   color: #fff;
+  text-align: center;
 }
 
 section.download a.btn {
@@ -92,6 +99,7 @@ section.download a.btn {
   border-radius: 50px;
   border: 2px solid #000;
   color: #000;
+  text-align: center;
 }
 
 footer {
@@ -105,4 +113,5 @@ footer p {
   font-size: 1rem;
   margin: 0;
   color: #fff;
+  
 }
