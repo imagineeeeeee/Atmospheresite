@@ -1,6 +1,8 @@
 body {
   font-family: sans-serif;
   margin: 0;
+  background-color: #000;
+  color: #fff;
 }
 
 header {
@@ -37,10 +39,12 @@ section {
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: #ffff;
 }
 
 section p {
   font-size: 1rem;
+  color: #ffff;
 }
 
 section.hero {
@@ -51,19 +55,22 @@ section.hero img {
   width: 200px;
   height: 200px;
   margin: 0 auto;
+  border-radius: 50%;
 }
 
 section.features ul {
   list-style: none;
   padding-left: 1rem;
+  color: #ffff;
 }
 
 section.download a.btn {
-  background-color: #000;
-  color: #fff;
+  background-color: #ffff;
+  color: #000;
   padding: 1rem 2rem;
   font-size: 1rem;
   cursor: pointer;
+  border-radius: 50px;
 }
 
 footer {
@@ -76,4 +83,5 @@ footer {
 footer p {
   font-size: 1rem;
   margin: 0;
+  color: #ffff;
 }
