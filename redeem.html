@@ -1,1 +1,36 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>Check Input Value</title>
+<style>
+#inputBox {
+  width: 100px;
+}
+#checkButton {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+#resultParagraph {
+  display: none;
+}
+</style>
+</head>
+<body>
+<input type="text" id="inputBox" placeholder="Enter a value">
+<button onclick="checkInput()" id="checkButton">Check Input</button>
+<p id="resultParagraph">Your redeem code is michealjacksonspecialreddem, to redeem dm the owner this code.</p>
+<script>
+function checkInput() {
+  var inputValue = document.getElementById("inputBox").value;
+  if (inputValue === "maggablenotfoundspecialedt") {
+    document.getElementById("resultParagraph").style.display = "block";
+  } else {
+    document.getElementById("resultParagraph").style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
