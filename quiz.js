@@ -5,11 +5,6 @@ const questions = [
     choices: ["London", "Paris", "Rome", "Berlin"],
     answer: 1,
   },
-  {
-    question: "What is the largest country in the world by land area?",
-    type: "text",
-    answer: "russia", // Case insensitive comparison
-  },
 ];
 
 let currentQuestion = 0;
