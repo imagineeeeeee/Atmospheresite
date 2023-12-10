@@ -7,7 +7,7 @@ const questions = [
   },
 ];
 
-let currentQuestion = 0;
+let currentQuestion = 1;
 let score = 0;
 
 function displayQuestion() {
