@@ -1,20 +1,5 @@
 const questions = [
-  {
-    question: "What is your Discord Username?",
-    answerType: "text", // new property for open ended question
-    answer: "doesnt matter", // case insensitive comparison
-  },
-  {
-    question: "Will you Mod Abuse?",
-    choices: ["Yes", "No"],
-    answer: 2,
-  },
-  {
-    question: "If someone is VDMing what will you do?",
-    answerType: "text", // new property for open ended question
-    answer: "you decide", // case insensitive comparison
-  },
-  // Add more questions here...
+  // ... questions with answerType property
 ];
 
 let currentQuestion = 0;
@@ -70,7 +55,7 @@ function submitAnswer(selectedChoice) {
     document.getElementById("submit-btn").disabled = true;
 
     // Send score and answers to Discord webhook
-    const webhookUrl = "https://discord.com/api/webhooks/1183276554495729756/01ct9ck1Ddi7KC5dRTqmtfmXeRvgp5mljk6c8-w_Rl7M72XR3UkaTOnpygKKl0h90oyN";
+    const webhookUrl = "YOUR_DISCORD_WEBHOOK_URL";
 
     const data = {
       content: `Quiz completed! Score: ${score}/${questions.length}`,
