@@ -1,6 +1,5 @@
 const questions = [
-  const questions = [
- {
+  {
 
   question: "What is your Discord Username?",
 
@@ -29,7 +28,6 @@ const questions = [
   answer: "you decide", // case insensitive comparison
 
  },
-  // ... questions with answerType property
 ];
 
 let currentQuestion = 0;
@@ -44,7 +42,8 @@ function displayQuestion() {
 
   // Generate embed content
   for (let i = 0; i < questions.length; i++) {
-    embedContent += `**Question ${i + 1}:** ${questions[i].question}\n`;
+    // Update line to correctly display question number and content
+    embedContent += `**Question ${(i + 1).toString().padStart(2, "0")}:** ${questions[i].question}\n`;
 
     if (questions[i].answerType === "text") {
       embedContent += `**Your Answer:** ${answerLog[i] ? answerLog[i] : "Not answered"}\n`;
