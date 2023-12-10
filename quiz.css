@@ -32,3 +32,19 @@ h1 {
   background-color: #eee;
   cursor: pointer;
 }
+.embed-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#embed-container pre {
+  font-family: monospace;
+  margin-bottom: 5px;
+}
+
+.footer {
+  text-align: right;
+  font-weight: bold;
+}
+
