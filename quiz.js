@@ -1,96 +1,102 @@
 const questions = [
   {
-
-  question: "What is your Discord Username?",
-
-  answerType: "text", // new property for open ended question
-
-  answer: "doesnt matter", // case insensitive comparison
-
- },
-
- {
-
-  question: "Will you Mod Abuse?",
-
-  choices: ["Yes", "No"],
-
-  answer: 2,
-
- },
-
- {
-
-  question: "If someone is VDMing what will you do?",
-
-  answerType: "text", // new property for open ended question
-
-  answer: "you decide", // case insensitive comparison
-
- },
+    question: "What is the capital of France?",
+    type: "multiple-choice",
+    choices: ["London", "Paris", "Rome", "Berlin"],
+    answer: 1,
+  },
+  {
+    question: "What is the largest country in the world by land area?",
+    type: "text",
+    answer: "russia", // Case insensitive comparison
+  },
 ];
 
 let currentQuestion = 0;
 let score = 0;
-let answerLog = [];
 
 function displayQuestion() {
-  const embedContainer = document.getElementById("embed-container");
-  const answerContainer = document.createElement("div");
+  const questionContainer = document.getElementById("question-container");
+  const answerContainer = document.getElementById("answer-container");
 
-  let embedContent = "";
+  const question = questions[currentQuestion];
 
-  // Generate embed content
-  for (let i = 0; i < questions.length; i++) {
-    // Update line to correctly display question number and content
-    embedContent += `**Question ${(i + 1).toString().padStart(2, "0")}:** ${questions[i].question}\n`;
+  // Clear answer container
+  answerContainer.innerHTML = "";
 
-    if (questions[i].answerType === "text") {
-      embedContent += `**Your Answer:** ${answerLog[i] ? answerLog[i] : "Not answered"}\n`;
-    } else {
-      embedContent += `**Your Answer:** ${answerLog[i] && answerLog[i] === questions[i].answer ? "Correct" : "Incorrect"}\n`;
-      embedContent += `**Correct Answer:** ${questions[i].choices[questions[i].answer]}\n`;
+  // Display question content
+  questionContainer.textContent = question.question;
+
+  if (question.type === "multiple-choice") {
+    // Create and display radio buttons for choices
+    for (let i = 0; i < question.choices.length; i++) {
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.name = `question-<span class="math-inline">\{currentQuestion\}\`;
+radioInput\.value \= i;
+answerContainer\.appendChild\(radioInput\);
+const label \= document\.createElement\("label"\);
+label\.textContent \= question\.choices\[i\];
+label\.htmlFor \= radioInput\.id;
+answerContainer\.appendChild\(label\);
+\}
+\} else if \(question\.type \=\=\= "text"\) \{
+// Create and display text input for answer
+const textInput \= document\.createElement\("textarea"\);
+textInput\.placeholder \= "Enter your answer here";
+answerContainer\.appendChild\(textInput\);
+\}
+\}
+function submitAnswers\(\) \{
+let userAnswer;
+const question \= questions\[currentQuestion\];
+if \(question\.type \=\=\= "multiple\-choice"\) \{
+const radioButtons \= document\.querySelectorAll\(\`input\[name\="question\-</span>{currentQuestion}"]`);
+    for (const radioButton of radioButtons) {
+      if (radioButton.checked) {
+        userAnswer = parseInt(radioButton.value);
+        break;
+      }
     }
-
-    embedContent += "\n";
+  } else if (question.type === "text") {
+    userAnswer = document.getElementById("answer-container").children[0].value.toLowerCase().trim();
   }
 
-  // Add footer with score
-  embedContent += `**Score:** ${score}/${questions.length}`;
-
-  embedContainer.innerHTML = `<pre>${embedContent}</pre>`;
-
-  // Display answer input element only for the current question
-  if (questions[currentQuestion].answerType === "text") {
-    answerContainer.innerHTML = `<input type="text" id="answer-input" placeholder="Enter your answer here">`;
-    embedContainer.appendChild(answerContainer);
+  if (!userAnswer) {
+    alert("Please provide an answer for both questions before submitting.");
+    return;
   }
-}
 
-function submitAnswer(selectedChoice) {
-  // Process answer based on type
-  if (typeof selectedChoice === "undefined") {
-    answerLog[currentQuestion] = document.getElementById("answer-input").value.toLowerCase().trim();
-    score += answerLog[currentQuestion] === questions[currentQuestion].answer ? 1 : 0;
-  } else {
-    answerLog[currentQuestion] = selectedChoice;
-    score += answerLog[currentQuestion] === questions[currentQuestion].answer ? 1 : 0;
-  }
+  // Check answer and update score
+  score += (userAnswer === question.answer) ? 1 : 0;
 
   currentQuestion++;
 
   if (currentQuestion === questions.length) {
-    displayQuestion();
-    document.getElementById("submit-btn").disabled = true;
-
-    // Send score and answers to Discord webhook
+    // Quiz finished, display final score and send results to Discord webhook
     const webhookUrl = "https://discord.com/api/webhooks/1183279682838347887/f1kxyNvuviun6Gob1WCbTQEjz08BHbbsXH3nYkFWDwg42jLVOjb5fJwoWrjmREY5j9me";
+
+    const embedContent = "";
+
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+      const userAnswer = (question.type === "multiple-choice") ? questions[i].choices[answers[i]] : answers[i];
+
+      embedContent += `**Question ${(i + 1).toString().padStart(2, "0")}:** ${question.question}\n`;
+      if (userAnswer === question.answer) {
+        embedContent += `**Your Answer:** Correct\n`;
+      } else {
+        embedContent += `**Your Answer:** Incorrect. The correct answer is: ${question.answer}\n`;
+      }
+
+      embedContent += "\n";
+    }
 
     const data = {
       content: `Quiz completed! Score: ${score}/${questions.length}`,
       embeds: [
         {
-          description: answerLog.join("\n"),
+          description: embedContent,
           footer: {
             text: `Score: ${score}/${questions.length}`,
           },
@@ -107,7 +113,12 @@ function submitAnswer(selectedChoice) {
     })
       .then(() => console.log("Discord webhook sent successfully"))
       .catch(error => console.error("Error sending Discord webhook", error));
+
+    // Disable submit button and display final score
+    document.getElementById("submit-btn").disabled = true;
+    alert(`Quiz completed! Your score is ${score}/${questions.length}`);
   } else {
+    // Display next question
     displayQuestion();
   }
 }
