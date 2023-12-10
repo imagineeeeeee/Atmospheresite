@@ -1,3 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.choices {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.choices li {
+  margin-bottom: 5px;
+}
+
+#submit-btn {
+  display: block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  cursor: pointer;
+}
 .embed-container {
   border: 1px solid #ddd;
   padding: 10px;
