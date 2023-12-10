@@ -43,7 +43,7 @@ function submitAnswer(selectedChoice) {
     alert("Quiz completed! Your score is " + score + "/" + questions.length);
 
     // Send score and answers to Discord webhook
-    const webhookUrl = "YOUR_DISCORD_WEBHOOK_URL"; // Replace with your actual webhook URL
+    const webhookUrl = "https://discord.com/api/webhooks/1183276554495729756/01ct9ck1Ddi7KC5dRTqmtfmXeRvgp5mljk6c8-w_Rl7M72XR3UkaTOnpygKKl0h90oyN"; // Replace with your actual webhook URL
 
     const data = {
       content: `Quiz completed! Score: ${score}/${questions.length}`,
