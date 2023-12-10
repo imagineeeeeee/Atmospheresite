@@ -19,64 +19,69 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let answerLog = [];
 
 function displayQuestion() {
-  const questionElement = document.getElementById("question");
-  const answerContainer = document.getElementById("answer-container");
+  const embedContainer = document.getElementById("embed-container");
+  const answerContainer = document.createElement("div");
 
-  questionElement.textContent = questions[currentQuestion].question;
+  let embedContent = "";
 
-  // Clear answer input and hide/show elements based on answer type
+  // Generate embed content
+  for (let i = 0; i < questions.length; i++) {
+    embedContent += `**Question ${i + 1}:** ${questions[i].question}\n`;
+
+    if (questions[i].answerType === "text") {
+      embedContent += `**Your Answer:** ${answerLog[i] ? answerLog[i] : "Not answered"}\n`;
+    } else {
+      embedContent += `**Your Answer:** ${answerLog[i] && answerLog[i] === questions[i].answer ? "Correct" : "Incorrect"}\n`;
+      embedContent += `**Correct Answer:** ${questions[i].choices[questions[i].answer]}\n`;
+    }
+
+    embedContent += "\n";
+  }
+
+  // Add footer with score
+  embedContent += `**Score:** ${score}/${questions.length}`;
+
+  embedContainer.innerHTML = `<pre>${embedContent}</pre>`;
+
+  // Display answer input element only for the current question
   if (questions[currentQuestion].answerType === "text") {
     answerContainer.innerHTML = `<input type="text" id="answer-input" placeholder="Enter your answer here">`;
-    document.getElementById("submit-btn").textContent = "Submit Answer";
-  } else {
-    answerContainer.innerHTML = `<ul class="choices"></ul>`;
-    document.getElementById("submit-btn").textContent = "Choose Answer";
-
-    for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
-      const choiceElement = document.createElement("li");
-      choiceElement.textContent = questions[currentQuestion].choices[i];
-      choiceElement.addEventListener("click", function () {
-        submitAnswer(i);
-      });
-      answerContainer.querySelector(".choices").appendChild(choiceElement);
-    }
+    embedContainer.appendChild(answerContainer);
   }
 }
 
 function submitAnswer(selectedChoice) {
-  // Check if answer type is text
+  // Process answer based on type
   if (typeof selectedChoice === "undefined") {
-    const userAnswer = document.getElementById("answer-input").value.toLowerCase().trim();
-
-    if (userAnswer === questions[currentQuestion].answer) {
-      alert("Correct!");
-      score++;
-    } else {
-      alert("Incorrect. The correct answer is " + questions[currentQuestion].answer);
-    }
+    answerLog[currentQuestion] = document.getElementById("answer-input").value.toLowerCase().trim();
+    score += answerLog[currentQuestion] === questions[currentQuestion].answer ? 1 : 0;
   } else {
-    const correctAnswer = questions[currentQuestion].answer;
-
-    if (selectedChoice === correctAnswer) {
-      alert("Correct!");
-      score++;
-    } else {
-      alert("Incorrect. The correct answer is " + questions[currentQuestion].choices[correctAnswer]);
-    }
+    answerLog[currentQuestion] = selectedChoice;
+    score += answerLog[currentQuestion] === questions[currentQuestion].answer ? 1 : 0;
   }
 
   currentQuestion++;
 
   if (currentQuestion === questions.length) {
-    alert("Quiz completed! Your score is " + score + "/" + questions.length);
+    displayQuestion();
+    document.getElementById("submit-btn").disabled = true;
 
     // Send score and answers to Discord webhook
     const webhookUrl = "https://discord.com/api/webhooks/1183276554495729756/01ct9ck1Ddi7KC5dRTqmtfmXeRvgp5mljk6c8-w_Rl7M72XR3UkaTOnpygKKl0h90oyN";
 
     const data = {
-      content: `Quiz completed! Score: <span class="math-inline">\{score\}/</span>{questions.length}`,
+      content: `Quiz completed! Score: ${score}/${questions.length}`,
+      embeds: [
+        {
+          description: answerLog.join("\n"),
+          footer: {
+            text: `Score: ${score}/${questions.length}`,
+          },
+        },
+      ],
     };
 
     fetch(webhookUrl, {
@@ -88,5 +93,9 @@ function submitAnswer(selectedChoice) {
     })
       .then(() => console.log("Discord webhook sent successfully"))
       .catch(error => console.error("Error sending Discord webhook", error));
+  } else {
+    displayQuestion();
+  }
+}
 
-    //
+displayQuestion();
