@@ -9,7 +9,7 @@ let fields = [];
 
 addWebhookButton.addEventListener('click', () => {
     webhookUrl = document.getElementById('webhook-url').value;
-    
+
     if (webhookUrl) {
         webhookDesigner.classList.remove('hidden');
         document.getElementById('webhook-url').value = '';
@@ -54,13 +54,11 @@ sendMessageButton.addEventListener('click', () => {
             name: document.getElementById('embed-author').value,
             icon_url: document.getElementById('embed-author-image').value
         },
-        fields: fields
+        fields: []
     };
 
-    fields = [];
-
     for (const fieldContainer of document.querySelectorAll('.field-container')) {
-        fields.push({
+        embed.fields.push({
             name: fieldContainer.querySelector('input[placeholder="Field Name"]').value,
             value: fieldContainer.querySelector('input[placeholder="Field Value"]').value
         });
@@ -68,7 +66,7 @@ sendMessageButton.addEventListener('click', () => {
 
     const data = {
         embeds: [embed],
-        content: messageContent
+        content: messageContent || null
     };
 
     fetch(webhookUrl, {
@@ -79,7 +77,19 @@ sendMessageButton.addEventListener('click', () => {
         body: JSON.stringify(data)
     }).then(() => {
         alert('Message sent successfully!');
+        fields = [];
+        clearEmbedInputs();
     }).catch(error => {
         alert('Error sending message:', error);
     });
 });
+
+function clearEmbedInputs() {
+    document.getElementById('embed-title').value = '';
+    document.getElementById('embed-color').value = '';
+    document.getElementById('embed-description').value = '';
+    document.getElementById('embed-footer').value = '';
+    document.getElementById('embed-author').value = '';
+    document.getElementById('embed-author-image').value = '';
+    document.getElementById('message-content').value = '';
+}
