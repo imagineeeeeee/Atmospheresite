@@ -41,48 +41,49 @@ addFieldButton.addEventListener('click', () => {
 });
 
 sendMessageButton.addEventListener('click', () => {
-    const messageContent = document.getElementById('message-content').value;
+  const messageContent = document.getElementById('message-content').value;
 
-    const embed = {
-        title: document.getElementById('embed-title').value,
-        color: document.getElementById('embed-color').value,
-        description: document.getElementById('embed-description').value,
-        footer: {
-            text: document.getElementById('embed-footer').value
-        },
-        author: {
-            name: document.getElementById('embed-author').value,
-            icon_url: document.getElementById('embed-author-image').value
-        },
-        fields: []
-    };
+  const embed = {
+    title: document.getElementById('embed-title').value,
+    color: document.getElementById('embed-color').value,
+    description: document.getElementById('embed-description').value,
+    footer: {
+      text: document.getElementById('embed-footer').value,
+    },
+    author: {
+      name: document.getElementById('embed-author').value,
+      icon_url: document.getElementById('embed-author-image').value,
+    },
+    fields: [],
+  };
 
-    for (const fieldContainer of document.querySelectorAll('.field-container')) {
-        embed.fields.push({
-            name: fieldContainer.querySelector('input[placeholder="Field Name"]').value,
-            value: fieldContainer.querySelector('input[placeholder="Field Value"]').value
-        });
-    }
-
-    const data = {
-        embeds: [embed],
-        content: messageContent || null
-    };
-
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(() => {
-        alert('Message sent successfully!');
-        fields = [];
-        clearEmbedInputs();
-    }).catch(error => {
-        alert('Error sending message:', error);
+  for (const fieldContainer of document.querySelectorAll('.field-container')) {
+    embed.fields.push({
+      name: fieldContainer.querySelector('input[placeholder="Field Name"]').value,
+      value: fieldContainer.querySelector('input[placeholder="Field Value"]').value,
     });
+  }
+
+  const data = {
+    embeds: [embed],
+    content: messageContent || null,
+  };
+
+  fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(() => {
+    alert('Message sent successfully!');
+    fields = [];
+    clearEmbedInputs();
+  }).catch(error => {
+    alert('Error sending message:', error);
+  });
 });
+
 
 function clearEmbedInputs() {
     document.getElementById('embed-title').value = '';
