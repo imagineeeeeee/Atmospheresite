@@ -1,6 +1,6 @@
 function getSubscriberCount() {
     const username = document.getElementById('username').value;
-    const url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UC' + username + '&key=AIzaSyCUV6XDxzgfeplRMPOgiKZV3v9Aa4KemJQ';
+    const url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UC' + username + '&key=[AIzaSyCUV6XDxzgfeplRMPOgiKZV3v9Aa4KemJQ]';
 
     fetch(url)
         .then(response => response.json())
