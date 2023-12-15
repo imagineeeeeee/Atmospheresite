@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website User Count</title>
+  <script>
+    let userCount = 0;
+
+    function onUserJoined() {
+      userCount++;
+      document.getElementById("userCount").textContent = userCount;
+    }
+
+    function onUserLeft() {
+      userCount--;
+      document.getElementById("userCount").textContent = userCount;
+    }
+
+    // Check for existing session identifier
+    let sessionId = sessionStorage.getItem("sessionId");
+
+    // Generate new identifier if needed
+    if (!sessionId) {
+      sessionId = Math.random().toString(36).substring(2, 15);
+      sessionStorage.setItem("sessionId", sessionId);
+      onUserJoined(); // First user joining
+    } else {
+      onUserJoined(); // Existing user already has identifier
+    }
+
+    // Listen for window unload (user closing tab)
+    window.addEventListener("unload", function() {
+      onUserLeft();
+    });
+  </script>
+</head>
+<body>
+  <h1>Number of users online: <span id="userCount"></span></h1>
+</body>
+</html>
