@@ -3,37 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website User Count</title>
+  <title>Website User Count (real-time)</title>
   <script>
-    let userCount = 0;
+    const ws = new WebSocket("ws://your-server-address/user-count");
 
-    function onUserJoined() {
-      userCount++;
-      document.getElementById("userCount").textContent = userCount;
-    }
+    ws.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      document.getElementById("userCount").textContent = data.userCount;
+    };
 
-    function onUserLeft() {
-      userCount--;
-      document.getElementById("userCount").textContent = userCount;
-    }
-
-    // Check for existing session identifier
-    let sessionId = sessionStorage.getItem("sessionId");
-
-    // Generate new identifier if needed
-    if (!sessionId) {
-  sessionId = Math.random().toString(36).substring(2, 15);
-  sessionStorage.setItem("sessionId", sessionId);
-  onUserJoined(); // This line ensures initial count
-} else {
-  onUserJoined();
-}
-
-
-    // Listen for window unload (user closing tab)
-    window.addEventListener("unload", function() {
-      onUserLeft();
-    });
+    // On load, send a message to the server to join the user count
+    ws.send(JSON.stringify({ type: "join" }));
   </script>
 </head>
 <body>
