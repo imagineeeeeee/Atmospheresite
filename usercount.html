@@ -22,12 +22,13 @@
 
     // Generate new identifier if needed
     if (!sessionId) {
-      sessionId = Math.random().toString(36).substring(2, 15);
-      sessionStorage.setItem("sessionId", sessionId);
-      onUserJoined(); // First user joining
-    } else {
-      onUserJoined(); // Existing user already has identifier
-    }
+  sessionId = Math.random().toString(36).substring(2, 15);
+  sessionStorage.setItem("sessionId", sessionId);
+  onUserJoined(); // This line ensures initial count
+} else {
+  onUserJoined();
+}
+
 
     // Listen for window unload (user closing tab)
     window.addEventListener("unload", function() {
