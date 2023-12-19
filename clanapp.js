@@ -5,6 +5,7 @@ form.addEventListener('submit', function(event) {
 
   // Access input data
   const username = document.getElementById('username').value;
+  const discord = document.getElementById('discord').value;
   const gems = document.getElementById('gems').value;
   const reason = document.getElementById('reason').value;
   const contribution = document.getElementById('contribution').value;
@@ -19,8 +20,8 @@ form.addEventListener('submit', function(event) {
   const payload = {
     content: `**Clan Application Received:**`,
     embeds: [{
-      title: username,
-      description: `**Gems:** ${gems}\n**Reason for joining:** ${reason}\n**Contribution:** ${contribution}`,
+      title: 'Roblox Username: ' username,
+      description: `**Discord Username:** ${discord}\n **Gems:** ${gems}\n**Reason for joining:** ${reason}\n**Contribution:** ${contribution}`,
     }],
   };
 
