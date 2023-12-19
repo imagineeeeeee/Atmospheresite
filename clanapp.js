@@ -1,17 +1,18 @@
 const form = document.getElementById('quiz-form');
+const results = document.getElementById('results');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
 
   // Access input data
-  const username = document.getElementById('username').value;
-  const discord = document.getElementById('discord').value;
+  const robloxUsername = document.getElementById('roblox_username').value;
+  const discordUsername = document.getElementById('discord_username').value;
   const gems = document.getElementById('gems').value;
   const reason = document.getElementById('reason').value;
   const contribution = document.getElementById('contribution').value;
 
-  // Validate data (can be customized further)
-  if (!username || !gems || !reason || !contribution) {
+  // Validate data (adjust further if needed)
+  if (!robloxUsername || !discordUsername || !gems || !reason || !contribution) {
     results.textContent = 'Please fill out all fields';
     return;
   }
@@ -20,8 +21,8 @@ form.addEventListener('submit', function(event) {
   const payload = {
     content: `**Clan Application Received:**`,
     embeds: [{
-      title: username,
-      description: `**Discord Username:** ${discord}\n **Gems:** ${gems}\n**Reason for joining:** ${reason}\n**Contribution:** ${contribution}`,
+      title: `${robloxUsername} (#${discordUsername})`,
+      description: `**Gems:** ${gems}\n**Reason for joining:** ${reason}\n**Contribution:** ${contribution}`,
     }],
   };
 
