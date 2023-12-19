@@ -21,7 +21,7 @@ form.addEventListener('submit', function(event) {
   const payload = {
     content: `**Clan Application Received:**`,
     embeds: [{
-      title: `R-User: ${robloxUsername} (D-User: @${discordUsername})`,
+      title: `R-User ${robloxUsername} (D-User @${discordUsername})`,
       description: `**Gems:** ${gems}\n**Reason for joining:** ${reason}\n**Contribution:** ${contribution}`,
     }],
   };
