@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clan Application Quiz</title>
+  <link rel="stylesheet" href="clanapp.css">
+</head>
+<body>
+  <h1>Clan Application Quiz</h1>
+  <form id="quiz-form">
+    <label for="username">Roblox and Discord Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="gems">How many gems do you have?</label>
+    <input type="number" id="gems" name="gems" required>
+
+    <label for="reason">Why would you like to join the clan?</label>
+    <textarea id="reason" name="reason" required></textarea>
+
+    <label for="contribution">How will you contribute to the clan?</label>
+    <textarea id="contribution" name="contribution" required></textarea>
+
+    <button type="submit">Submit Quiz</button>
+  </form>
+  <div id="results"></div>
+
+  <script src="clanapp.js"></script>
+</body>
+</html>
