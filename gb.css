@@ -54,4 +54,7 @@ p {
     text-align: center;
     text-decoration: none;
 }
-    
+.server-count {
+    font-weight: bold;
+}
+
