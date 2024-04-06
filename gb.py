@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 import discord
 
-BOT_TOKEN = "MTIxOTg2ODk2Mzg4Mjc5OTIxMw.GVDWff.ui1azi2Q0F8CSa1X5gcuidiocEGZrxiEdc81bk"
-
+BOT_TOKEN = BOT
 app = Flask(__name__)
 
 client = discord.Client(intents=discord.Intents.all())
