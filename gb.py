@@ -3,7 +3,7 @@ import discord
 
 app = Flask(__name__)
 
-client = discord.Client()  # Replace with your Discord bot client
+client = discord.Client(intents=discord.Intents.default())  # Replace with your Discord bot client
 
 @app.route("/get_server_count")
 def get_server_count():
