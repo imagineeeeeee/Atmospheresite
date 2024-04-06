@@ -8,4 +8,4 @@ function updateServerCount() {
 }
 
 // Call the function every few minutes to update the count
-setInterval(updateServerCount, 180000); // Update every 3 minutes
+setInterval(updateServerCount, 18000); // Update every 3 minutes
