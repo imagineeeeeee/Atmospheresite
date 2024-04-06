@@ -6,7 +6,7 @@ const payload = {
 };
 
   // Send data to Discord webhook
-fetch('https://discord.com/api/webhooks/1187325343300849745/UzasQ47dTQnzx4Gdtfyy-IFzSzDxAe2tNz_l_f3iqW1hC6AXwywDLKXJoqs0XvluEU8x', {
+fetch('https://discord.com/api/webhooks/1226025923233583195/QHUF8dx6nnbeJlwEWlCfkQj1pTmO_lKomx5-gqKJNNkw1i_OK3xOk7zu22L8XLrRh1gS', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
