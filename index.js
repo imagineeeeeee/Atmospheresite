@@ -1,3 +1,11 @@
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+
+$(document).ready(function() {
+  $.getJSON("https://api.ipify.org?format=json", function(data) {
+    $("#gfg").html(data.ip);
+  });
+});
+
 const payload = {
   content: `**Website user online.**`,
   embeds: [{
@@ -6,7 +14,7 @@ const payload = {
 };
 
   // Send data to Discord webhook
-fetch('https://discord.com/api/webhooks/1226025923233583195/QHUF8dx6nnbeJlwEWlCfkQj1pTmO_lKomx5-gqKJNNkw1i_OK3xOk7zu22L8XLrRh1gS', {
+fetch('https://discord.com/api/webhooks/1201371252275806278/quMI9Yjb2jEkj3sRLrnJnExuQr-V8Vmb63vtX9JVKiFKhwe_3cEILiY5Sdo03zTCjV8H', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
