@@ -1,11 +1,3 @@
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-
-$(document).ready(function() {
-  $.getJSON("https://api.ipify.org?format=json", function(data) {
-    $("#gfg").html(data.ip);
-  });
-});
-
 const payload = {
   content: `**Website user online.**`,
   embeds: [{
